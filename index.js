@@ -3,11 +3,14 @@ module.exports = function (sails) {
   var deasync = require('deasync');
   var fs = require('fs');
   var marked = require('marked');
+  var pkg = require('./package.json');
+
+  var configKey = pkg.name.replace('sails-hook-', '');
 
   var activeLocale;
 
   var defaults = {};
-  defaults[__configKey__] = {
+  defaults[configKey] = {
     path: 'locales/fragments/{locale}/{path}.md'
   };
 
@@ -44,7 +47,7 @@ module.exports = function (sails) {
   }
 
   function getFragmentPath (address, locale) {
-    return sails.config[__configKey__].path
+    return sails.config[configKey].path
       .replace('{locale}', locale)
       .replace('{path}', address.replace('.', '/'))
     ;
