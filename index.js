@@ -22,9 +22,10 @@ module.exports = function (sails) {
       before: {
         '/*': function (request, response, next) {
 
+          // Using condition to filter out static files requests.
           if (request.accepted.some(function (type) {
-              return type.value === 'text/html';
-            })) {
+            return type.value === 'text/html';
+          })) {
             activeLocale = request.getLocale();
             response.locals.fragment = deasync(getFragment);
           }
@@ -36,6 +37,13 @@ module.exports = function (sails) {
 
   };
 
+  /**
+   * Returns fragment source by its address.
+   * Uses active locale to select the fragment.
+   *
+   * @param {string} address
+   * @param {function} callback
+   */
   function getFragment (address, callback) {
     var path = getFragmentPath(address, activeLocale);
     fs.readFile(path, 'utf8', function (error, source) {
@@ -46,6 +54,14 @@ module.exports = function (sails) {
     });
   }
 
+  /**
+   * Returns filesystem path for the specified fragment address and locale.
+   *
+   * @param {string} address
+   * @param {string} locale
+   *
+   * @returns {string}
+   */
   function getFragmentPath (address, locale) {
     return sails.config[configKey].path
       .replace('{locale}', locale)

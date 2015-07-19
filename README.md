@@ -4,17 +4,37 @@
 
 
 A special hook for Sails.js to support localization using fragments instead of strings.
-Fragments are stored in the Markdown format.
-
-
-## Features
-
-- supports fragments in markdown format
+Fragments are stored in the Markdown format and could be included into your views using locale aware function.
 
 
 ## Usage
 
 Install hook via npm: `npm install --save sails-hook-i18n-fragment`.
+
+Create the following files in your project:
+
+- /locale/fragments/en/foo.md
+- /locale/fragments/de/foo.md
+- /locale/fragments/ru/foo.md
+
+Call the following function inside of your template: `fragment('foo')`.
+It will output the fragment according to active locale.
+Locale is determined by original `i18n` hook (the `node-i18n` library), which is required.
+
+You can use a complex file structure if you want to:
+
+- /locale/fragments/en/the/part/of/my/app/fragment.md
+
+`fragment('the.part.of.my.app.fragment')`.
+
+You can change the base path using the `path` configuration option:
+
+```javascript
+# config/i18n.js
+module.exports['i18n-fragment'] = {
+  path: 'my-fragments/{locale}/{path}.md'
+};
+```
 
 
 ## Changelog

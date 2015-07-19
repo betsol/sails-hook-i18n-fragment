@@ -1,6 +1,6 @@
 {
   "name": "sails-hook-i18n-fragment",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A hook for Sails.js to support localization using fragments",
   "keywords": [
     "i18n",
