@@ -1,0 +1,28 @@
+{
+  "name": "sails-hook-i18n-fragment",
+  "version": "0.0.0",
+  "description": "A hook for Sails.js to support localization using fragments",
+  "keywords": [
+    "i18n",
+    "internationalization",
+    "translation",
+    "locales",
+    "sails",
+    "sails-hook"
+  ],
+  "author": "Slava Fomin II <s.fomin@betsol.ru>",
+  "repository": "betsol/sails-hook-i18n-fragment",
+  "license": "MIT",
+  "dependencies": {
+    "deasync": "^0.1.0",
+    "marked": "^0.3.3"
+  },
+  "files": [
+    "changelog.md",
+    "index.js",
+    "README.md"
+  ],
+  "sails": {
+     "isHook": true
+   }
+}
